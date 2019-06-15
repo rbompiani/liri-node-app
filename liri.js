@@ -49,7 +49,16 @@ switch(command){
 
     /* ---- SONGS ---- */ 
     case "spotify-this-song":
-        console.log("you're looking for a song");
+        console.log("you're looking for " + pointer);
+        // create spotify search
+        spotify
+            .search({ type: 'track', query: pointer, limit: 1 })
+            .then(function(response) {
+                console.log(response.tracks.items);
+            })
+            .catch(function(err) {
+            console.log(err);
+        });
         break;
     
     /* ---- MOVIES ---- */
