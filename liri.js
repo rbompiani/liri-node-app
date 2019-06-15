@@ -49,12 +49,16 @@ switch(command){
 
     /* ---- SONGS ---- */ 
     case "spotify-this-song":
-        console.log("you're looking for " + pointer);
+        console.log("Hamsters are searching for your track. Hold please...");
         // create spotify search
         spotify
             .search({ type: 'track', query: pointer, limit: 1 })
             .then(function(response) {
-                console.log(response.tracks.items);
+                console.log(response.tracks.items[0].artists[0].name);
+                console.log(pointer);
+                console.log(response.tracks.items[0].preview_url);
+                console.log(response.tracks.items[0].album.name);
+
             })
             .catch(function(err) {
             console.log(err);
