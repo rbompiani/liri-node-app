@@ -9,13 +9,19 @@ var command = process.argv[2];
 var pointer = process.argv[3];
 
 switch(command){
+
+    /* ---- CONCERTS ---- */
     case "concert-this":
         console.log("you're looking for a concert");
+        //create query string
         var fullQuery = "https://rest.bandsintown.com/artists/" + pointer + "/events?app_id=codingbootcamp"
-        console.log(fullQuery);
+
+        // create axios request
         axios.get(fullQuery).then(
         function(response) {
-            console.log(response);
+            console.log(response.data[0].venue.name);
+            console.log(response.data[0].venue.city + ", " + response.data[0].venue.country);
+            console.log(response.data[0].datetime);
         })
         .catch(function(error) {
             if (error.response) {
@@ -39,12 +45,18 @@ switch(command){
         });
 
         break;
+
+    /* ---- SONGS ---- */ 
     case "spotify-this-song":
         console.log("you're looking for a song");
         break;
+    
+    /* ---- MOVIES ---- */
     case "movie-this":
         console.log("you're looking for a movie");
         break;
+
+    /* ---- RUN FROM FILE ---- */
     case "do-what-it-says":
         console.log("you're bossy");
         break;
