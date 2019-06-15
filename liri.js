@@ -12,7 +12,7 @@ switch(command){
 
     /* ---- CONCERTS ---- */
     case "concert-this":
-        console.log("you're looking for a concert");
+        console.log(pointer + "'s next show is:");
         //create query string
         var fullQuery = "https://rest.bandsintown.com/artists/" + pointer + "/events?app_id=codingbootcamp"
 
@@ -21,7 +21,8 @@ switch(command){
         function(response) {
             console.log(response.data[0].venue.name);
             console.log(response.data[0].venue.city + ", " + response.data[0].venue.country);
-            console.log(response.data[0].datetime);
+            console.log(moment(response.data[0].datetime).format('MM DD YYYY'));
+        
         })
         .catch(function(error) {
             if (error.response) {
